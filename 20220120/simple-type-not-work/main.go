@@ -3,21 +3,17 @@ package main
 import "fmt"
 
 // 定义结构
-type  abc struct {
-
+type Abc struct {
 }
 
-
-func (i *abc) test() int{
+func (i *Abc) test() int {
 	fmt.Println("***********************")
 	return 100
 }
 
-func main(){
+func main() {
 	// 初始化结构
-	aaa := &abc{
-
-	}
+	aaa := &Abc{}
 
 	//调用结构的方法
 	aaa.test()
