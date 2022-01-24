@@ -99,12 +99,12 @@ func main() {
 	uploadFile(*sc, "./local.txt", "./remote.txt")
 	fmt.Fprintf(os.Stdout, "\n")
 
-
 	//*
 	//* Download remote file to local file
 	//*
 	downloadFile(*sc, "./remote.txt", "./download.txt")
 	fmt.Fprintf(os.Stdout, "\n")
+
 }
 
 func listFiles(sc sftp.Client, remoteDir string) (err error) {
@@ -135,7 +135,6 @@ func listFiles(sc sftp.Client, remoteDir string) (err error) {
 	return
 }
 
-
 // Upload file to sftp server
 func uploadFile(sc sftp.Client, localFile, remoteFile string) (err error) {
 	fmt.Fprintf(os.Stdout, "Uploading [%s] to [%s] ...\n", localFile, remoteFile)
@@ -157,7 +156,7 @@ func uploadFile(sc sftp.Client, localFile, remoteFile string) (err error) {
 	}
 
 	// Note: SFTP To Go doesn't support O_RDWR mode
-	dstFile, err := sc.OpenFile(remoteFile, (os.O_WRONLY|os.O_CREATE|os.O_TRUNC))
+	dstFile, err := sc.OpenFile(remoteFile, (os.O_WRONLY | os.O_CREATE | os.O_TRUNC))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to open remote file: %v\n", err)
 		return
