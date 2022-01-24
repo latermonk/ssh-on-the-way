@@ -1,3 +1,7 @@
+// https://sftptogo.com/blog/go-sftp/
+// How to connect to SFTP in Go
+
+
 package main
 
 import (
