@@ -1,0 +1,34 @@
+# HTTP Server.
+server:
+  address:             ":8199"
+  serverRoot:          "resource/public"
+  dumpRouterMap:       true
+  routeOverWrite:      true
+  accessLogEnabled:    true
+  openapiPath:         "/api.json"
+  swaggerPath:         "/swagger"
+
+# Global logging.
+logger:
+    level : "all"
+    stdout: true
+
+# Database.
+database:
+  logger:
+    level:   "all"
+    stdout:  true
+
+  default:
+    link:   "mysql:root:my-secret-pw@tcp(10.252.37.64:3306)/test"
+    debug:  true
+
+# CLI.
+gfcli:
+  gen:
+    dao:
+    - link:            "mysql:root:my-secret-pw@tcp(10.252.37.64:3306)/test"
+      tables:          "user"
+      removePrefix:    "gf_"
+      descriptionTag:  true
+      noModelComment:  true
