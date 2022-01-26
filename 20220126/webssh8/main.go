@@ -86,14 +86,22 @@ func staticRouter(router *gin.Engine) {
 }
 
 func main() {
+	// main
+
 	server := gin.Default()
 	server.SetTrustedProxies(nil)
 	server.Use(gzip.Gzip(gzip.DefaultCompression))
+
+	// staticRouter 静态页面的位置
 	staticRouter(server)
+
+	// /terminal
 	server.GET("/term", func(c *gin.Context) {
 		fmt.Println("===================term===========================")
 		controller.TermWs(c, time.Duration(timeout)*time.Minute)
 	})
+
+	// check ssh conection
 	server.GET("/check", func(c *gin.Context) {
 		responseBody := controller.CheckSSH(c)
 		responseBody.Data = map[string]interface{}{
@@ -101,6 +109,8 @@ func main() {
 		}
 		c.JSON(200, responseBody)
 	})
+
+	// file
 	file := server.Group("/file")
 	{
 		file.GET("/list", func(c *gin.Context) {
@@ -116,5 +126,7 @@ func main() {
 			controller.UploadProgressWs(c)
 		})
 	}
-	server.Run(fmt.Sprintf(":%d", *port))
+
+	server.Run(fmt.Sprintf(":%d", *port)) // Default port = 5032
+
 }

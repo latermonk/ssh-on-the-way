@@ -23,6 +23,7 @@ func TimeCost(start time.Time, body *ResponseBody) {
 func CheckSSH(c *gin.Context) *ResponseBody {
 	responseBody := ResponseBody{Msg: "success"}
 	defer TimeCost(time.Now(), &responseBody)
+
 	sshInfo := c.DefaultQuery("sshInfo", "")
 	sshClient, err := core.DecodedMsgToSSHClient(sshInfo)
 	if err != nil {
@@ -30,6 +31,7 @@ func CheckSSH(c *gin.Context) *ResponseBody {
 		responseBody.Msg = err.Error()
 		return &responseBody
 	}
+
 	err = sshClient.GenerateClient()
 	if err != nil {
 		fmt.Println(err)
