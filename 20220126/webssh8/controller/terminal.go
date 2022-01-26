@@ -21,6 +21,8 @@ var upgrader = websocket.Upgrader{
 
 // TermWs 获取终端ws
 func TermWs(c *gin.Context, timeout time.Duration) *ResponseBody {
+
+
 	responseBody := ResponseBody{Msg: "success"}
 	defer TimeCost(time.Now(), &responseBody)
 	sshInfo := c.DefaultQuery("sshInfo", "")
@@ -34,12 +36,16 @@ func TermWs(c *gin.Context, timeout time.Duration) *ResponseBody {
 		responseBody.Msg = err.Error()
 		return &responseBody
 	}
+
+	// Upgrade to websocket
 	wsConn, err := upgrader.Upgrade(c.Writer, c.Request, nil)
 	if err != nil {
 		fmt.Println(err)
 		responseBody.Msg = err.Error()
 		return &responseBody
 	}
+
+	// GenerateClient
 	err = sshClient.GenerateClient()
 	if err != nil {
 		wsConn.WriteMessage(1, []byte(err.Error()))
@@ -48,7 +54,12 @@ func TermWs(c *gin.Context, timeout time.Duration) *ResponseBody {
 		responseBody.Msg = err.Error()
 		return &responseBody
 	}
+
+	// InitTerminal
 	sshClient.InitTerminal(wsConn, row, col)
+
+	// Connect
 	sshClient.Connect(wsConn, timeout)
+
 	return &responseBody
 }

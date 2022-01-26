@@ -10,6 +10,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	//"time"
 	"webssh/controller"
 
 	"github.com/gin-contrib/gzip"
@@ -89,6 +91,7 @@ func main() {
 	server.Use(gzip.Gzip(gzip.DefaultCompression))
 	staticRouter(server)
 	server.GET("/term", func(c *gin.Context) {
+		fmt.Println("===================term===========================")
 		controller.TermWs(c, time.Duration(timeout)*time.Minute)
 	})
 	server.GET("/check", func(c *gin.Context) {
