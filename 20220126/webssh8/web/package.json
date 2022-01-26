@@ -1,0 +1,38 @@
+{
+  "name": "webssh",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Jrohy",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "element-ui": "^2.15.7",
+    "screenfull": "^5.2.0",
+    "sortablejs": "^1.14.0",
+    "vue": "^2.6.14",
+    "vuex": "^3.6.2",
+    "xterm": "^4.16.0",
+    "xterm-addon-attach": "^0.6.0",
+    "xterm-addon-fit": "^0.5.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.15",
+    "@vue/cli-plugin-eslint": "~4.5.15",
+    "@vue/cli-service": "~4.5.15",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-component": "^1.1.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-vue": "^7.18.0",
+    "sass": "^1.42.1",
+    "sass-loader": "^10.2.0",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
