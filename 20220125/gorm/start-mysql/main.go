@@ -15,10 +15,11 @@ type Product struct {
 	Price uint
 }
 
-type Users struct {
+type User struct {
 	gorm.Model
-	Code  string
-	Price uint
+	passport  string
+	password string
+	nickname string
 }
 
 func main() {
@@ -28,8 +29,15 @@ func main() {
 	dsn := "root:my-secret-pw@tcp(10.252.37.64:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
 	db, _ := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
-	var auser Users
+	var user User
 
-	db.First(&auser)
+	result  := db.Find(&user)
+	fmt.Println("result.RowsAffected =", result.RowsAffected)
+
+
+
+	//rows := db.Row()
+	//fmt.Println("rows = ", rows)
+
 
 }
