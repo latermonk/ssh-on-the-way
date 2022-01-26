@@ -1,6 +1,11 @@
 #  很好的一个 web ssh terminal
 
 
+```sql
+docker run -d -p 50032:5032 --log-driver json-file --log-opt max-file=1 --log-opt max-size=100m --restart always --name webssh -e TZ=Asia/Shanghai ibackchina2018/webssh
+
+```
+
 # webssh
 ![](https://img.shields.io/github/v/release/Jrohy/webssh.svg) 
 ![](https://img.shields.io/docker/pulls/jrohy/webssh.svg) 
