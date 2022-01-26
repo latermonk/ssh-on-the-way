@@ -1,4 +1,4 @@
-# Port Scanner
+# Port Scanner   端口扫描器
 A tool that can scan out port  which is opening.
 
 ## Usage
